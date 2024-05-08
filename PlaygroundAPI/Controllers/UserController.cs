@@ -101,4 +101,18 @@ public class UserController : ControllerBase
 
         throw new Exception("Failed to delete User");
     }
+
+    [HttpGet("GetUserJobInfo/{userId}")]
+    public UserJobInfo GetUserJobInfo(int userId)
+    {
+        UserJobInfo userJobInfo = _dapper.LoadSingleData<UserJobInfo>($"SELECT * FROM TutorialAppSchema.UserJobInfo WHERE UserId = {userId}");
+        return userJobInfo;
+    }
+
+    [HttpGet("GetUserSalary/{userId}")]
+    public UserSalary GetUserSalary(int userId)
+    {
+        UserSalary userSalary = _dapper.LoadSingleData<UserSalary>($"SELECT * FROM TutorialAppSchema.UserSalary WHERE UserId = {userId}");
+        return userSalary;
+    }
 }
